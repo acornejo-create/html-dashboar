@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Briarfield Programmatic Performance — Apr-Jun 2026</title>
+    <!-- Include Chart.js for smooth line trends -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #212529;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            color: #1e293b;
+        }
+        .subtitle {
+            font-size: 13px;
+            color: #64748b;
+            margin: 0 0 24px 0;
+        }
+        
+        /* 2-Column Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Nested grid for the bottom right stats (CTR & Conv Rate) */
+        .nested-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            height: 100%;
+        }
+
+        /* Large Cards (Impressions, Clicks, Conversions) */
+        .large-card {
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 220px;
+        }
+
+        /* Small Cards (CTR, Conv Rate) */
+        .small-card {
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            width: 100%;
+        }
+        .card-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Metric Typography */
+        .metric-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+        
+        /* Specialized large text for the big Conversions box */
+        .metric-value.massive {
+            font-size: 56px;
+            text-align: center;
+            margin: auto 0;
+        }
+
+        .change-badge {
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .change-badge.up {
+            color: #10b981;
+        }
+        .change-badge.down {
+            color: #ef4444;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 120px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Responsive collapse */
+        @media (max-width: 900px) {
+            .dashboard-grid, .nested-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Briarfield — Programmatic Performance</h1>
+        <p class="subtitle">Reporting Period: Apr 1 – Jun 30, 2026 | Blended Performance</p>
+        
+        <div class="dashboard-grid">
+            
+            <!-- ROW 1, COLUMN 1: Impressions Chart -->
+            <div class="large-card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">Impressions</span>
+                        <span class="change-badge up">▲ 27.0%</span>
+                    </div>
+                    <div class="metric-value">350,810</div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="impressionsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- ROW 1, COLUMN 2: Conversions (Big Box) -->
+            <div class="large-card">
+                <div class="card-header">
+                    <span class="card-title">Conversions</span>
+                    <span class="change-badge down">▼ 16.2%</span>
+                </div>
+                <!-- Styled to command the center space dynamically -->
+                <div class="metric-value massive">31</div>
+            </div>
+
+            <!-- ROW 2, COLUMN 1: Clicks Chart -->
+            <div class="large-card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">Clicks</span>
+                        <span class="change-badge up">▲ 264.8%</span>
+                    </div>
+                    <div class="metric-value">1,711</div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="clicksChart"></canvas>
+                </div>
+            </div>
+
+            <!-- ROW 2, COLUMN 2: CTR & Conversion Rate Nested Grid -->
+            <div class="nested-grid">
+                
+                <!-- CTR -->
+                <div class="small-card">
+                    <div class="card-header">
+                        <span class="card-title">CTR</span>
+                        <span class="change-badge up">▲ 187.3%</span>
+                    </div>
+                    <div class="metric-value">0.49%</div>
+                </div>
+
+                <!-- Conversion Rate -->
+                <div class="small-card">
+                    <div class="card-header">
+                        <span class="card-title">Conversion Rate</span>
+                        <span class="change-badge up">▲ 46.1%</span>
+                    </div>
+                    <div class="metric-value">11.52%</div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Native dashboard line configuration
+        const lineChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    padding: 10,
+                    backgroundColor: '#1e293b',
+                    callbacks: {
+                        label: function(context) {
+                            return ' ' + context.raw.toLocaleString();
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: { display: false },
+                    ticks: {
+                        color: '#94a3b8',
+                        font: { size: 11, family: 'system-ui' }
+                    }
+                },
+                y: {
+                    display: false,
+                    grid: { display: false }
+                }
+            },
+            elements: {
+                point: {
+                    radius: 3,
+                    hoverRadius: 5,
+                    backgroundColor: '#3b82f6',
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                },
+                line: {
+                    tension: 0.35,
+                    borderWidth: 3,
+                    borderColor: '#3b82f6'
+                }
+            }
+        };
+
+        // Render Impressions Line (Apr: 112,649 | May: 66,508 | Jun: 171,653)
+        const ctxImp = document.getElementById('impressionsChart').getContext('2d');
+        new Chart(ctxImp, {
+            type: 'line',
+            data: {
+                labels: ['Apr 2026', 'May 2026', 'Jun 2026'],
+                datasets: [{
+                    data: [112649, 66508, 171653],
+                    fill: true,
+                    backgroundColor: function(context) {
+                        const chart = context.chart;
+                        const {ctx, chartArea} = chart;
+                        if (!chartArea) return null;
+                        const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+                        gradient.addColorStop(0, 'rgba(59, 130, 246, 0.15)');
+                        gradient.addColorStop(1, 'rgba(59, 130, 246, 0.0)');
+                        return gradient;
+                    }
+                }]
+            },
+            options: lineChartOptions
+        });
+
+        // Render Clicks Line (Apr: 139 | May: 130 | Jun: 1,442)
+        const ctxClk = document.getElementById('clicksChart').getContext('2d');
+        new Chart(ctxClk, {
+            type: 'line',
+            data: {
+                labels: ['Apr 2026', 'May 2026', 'Jun 2026'],
+                datasets: [{
+                    data: [139, 130, 1442],
+                    fill: true,
+                    backgroundColor: function(context) {
+                        const chart = context.chart;
+                        const {ctx, chartArea} = chart;
+                        if (!chartArea) return null;
+                        const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+                        gradient.addColorStop(0, 'rgba(59, 130, 246, 0.15)');
+                        gradient.addColorStop(1, 'rgba(59, 130, 246, 0.0)');
+                        return gradient;
+                    }
+                }]
+            },
+            options: lineChartOptions
+        });
+    </script>
+</body>
+</html>
